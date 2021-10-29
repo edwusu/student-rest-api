@@ -120,7 +120,7 @@ router.patch('/:userId', async (req, res) => {
 
 // Search User in Database if any
   let student = await database.table('students').filter({id: userId}).get();
-  if (user) {
+  if (student) {
 
       let email = req.body.email;
       let address = req.body.address;
@@ -138,6 +138,26 @@ router.patch('/:userId', async (req, res) => {
       }).then(result => res.json({
         message: 'Student updated successfully'
       })).catch(err => res.json(err));
+  }
+});
+
+/* DELETE STUDENT FROM DB */
+router.patch('/:userId', async (req, res) => {
+  let userId = req.params.userId;     // Get the User ID from the parameter
+
+// Search User in Database if any
+  let student = await database.table('students').filter({id: userId}).get();
+  if (student) {
+      // Delete student from database if exist
+      database.table('students').filter({id: userId}).delete({
+        id: userId
+      }).then(result => res.json({
+        message: 'Student Deleted successfully'
+      })).catch(err => res.json(err));
+  }else{
+    res.json({
+      message: `Student with ID ${userid} not found`
+    })
   }
 });
 
