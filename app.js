@@ -4,36 +4,21 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-// Custom Dependencise
-// const cors = require('cors');
-// const corsOptions ={
-//     origin: '*', 
-//     credentials: true,            //access-control-allow-credentials:true
-//     methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH'],
-//     allowedHeaders: 'Content-Type, Authorization, Origin, X-Requested-with, Accept',
-//     preflightContinue: false,
-//     optionsSuccessStatus: 200
-// }
 
 
 // Import routes
 const productsRoute = require('./routes/students');
+const auth = require('./routes/auth');
 
 
 const app = express();
 
 // Use routs
 app.use('/api/students', productsRoute);
+app.use('/api/login', auth);
 
 
-// Custom configuartion for CORS
-// app.use(cors({
-//   origin: '*',
-//   methods: ['GET', 'POST', 'PATCH', 'DELETE', 'PUT'],
-//   allowedHeaders: 'Content-Type, Authorization, Origin, X-Requested-with, Accept',
-//   // allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept',
-// }))
-// app.use(cors(corsOptions));
+
 
 
 
