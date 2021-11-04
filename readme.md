@@ -23,3 +23,9 @@ Method: PATCH
 URL: http://localhost:3000/api/students
 parameters: action = 'update'
 
+
+### Login as Student
+Method: POST
+URL: http://localhost:3000/api/login
+body: username/email & password
+
